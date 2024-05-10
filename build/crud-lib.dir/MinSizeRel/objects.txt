@@ -1,0 +1,2 @@
+C:/Users/andru/source/repos/feedback-service/build/crud-lib.dir/MinSizeRel/App.obj
+C:/Users/andru/source/repos/feedback-service/build/crud-lib.dir/MinSizeRel/ErrorHandler.obj
