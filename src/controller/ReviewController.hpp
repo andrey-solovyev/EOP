@@ -1,7 +1,7 @@
 #ifndef ReviewController_hpp
 #define ReviewController_hpp
 
-#include "service/UserService.hpp"
+#include "service/ReviewService.hpp"
 
 #include "oatpp/web/server/api/ApiController.hpp"
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
@@ -39,7 +39,7 @@ public:
     ENDPOINT("POST", "users", createReview,
         BODY_DTO(Object<CreateReviewDto>, reviewDto))
     {
-        return createDtoResponse(Status::CODE_200);
+        return createDtoResponse(Status::CODE_200, m_reviewService.createReview(reviewDto));
     }
 
     ENDPOINT_INFO(getReviewById) {
@@ -100,7 +100,7 @@ public:
     {
         return createDtoResponse(Status::CODE_200, m_reviewService.getReviewByCourseId(courseId, offset, limit));
     }
-    
+
 
     ENDPOINT_INFO(likeReview) {
         info->summary = "Update likes in Review by id";
@@ -118,3 +118,8 @@ public:
     {
         return createDtoResponse(Status::CODE_200, m_reviewService.likeReview(reviewId));
     }
+
+};
+#include OATPP_CODEGEN_END(ApiController) //<- End Codegen
+
+#endif

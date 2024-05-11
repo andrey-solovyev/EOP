@@ -10,10 +10,10 @@
 /**
  * UserDb client definitions.
  */
-class ReviewDto : public oatpp::orm::DbClient {
+class ReviewDb : public oatpp::orm::DbClient {
 public:
 
-  UserDb(const std::shared_ptr<oatpp::orm::Executor>& executor)
+   ReviewDb(const std::shared_ptr<oatpp::orm::Executor>& executor)
     : oatpp::orm::DbClient(executor)
   {
 
@@ -31,7 +31,7 @@ public:
         "IINSERT INTO Review VALUES "
         "(description, grade, userld, courseld, isUpdated, creationDate, updateDate, countLike, countDislike) VALUES "
         "(:review.description, :review.grade, :review.userld, :review.courseld, :review.isUpdated, :review.creationDate, :review.updateDate, :review.countLike, :review.countDislike);",
-        PARAM(oatpp::Object<UserDto>, user))
+        PARAM(oatpp::Object<CreateReviewDto>, review))
 
   QUERY(updateUser,
         "UPDATE Review "
@@ -49,11 +49,11 @@ public:
 
   QUERY(getReviewsByCoursId,
         "SELECT * FROM Review WHERE courseId = :courseId;",
-        PARAM(oatpp::UInt32, courseId),
+        PARAM(oatpp::UInt32, courseId))
 
   QUERY(deleteReviewById,
         "DELETE FROM Review WHERE id=:id;",
-        PARAM(oatpp::Int32, id)),
+        PARAM(oatpp::Int32, id))
 
      QUERY(getReviews,
           "SELECT * FROM Review order by creationDate desc LIMIT :limit OFFSET :offset;",
