@@ -1,25 +1,23 @@
 #include "ReviewService.hpp"
 
-oatpp::Object<ReviewDto> ReviewService::createReview(const oatpp::Object<CreateReviewDto>& dto) {
-
-	auto dbResult = m_database->createReview(dto);
-	OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+oatpp::Object<ReviewDto> ReviewService::createReview(const oatpp::Object<CreateReviewDto>& dto)
+{
+    auto dbResult = m_database->createReview(dto);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
     auto id = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
 
-	return getReviewById((v_int32)id);
-
+    return getReviewById(static_cast<v_int32>(id));
 }
 
-oatpp::Object<ReviewDto> ReviewService::updateReview(const oatpp::Object<ReviewDto>& dto) {
-
+oatpp::Object<ReviewDto> ReviewService::updateReview(const oatpp::Object<ReviewDto>& dto)
+{
     auto dbResult = m_database->updateReview(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    return FeedbackService::getReviewById(dto->id);
-
+    return ReviewService::getReviewById(dto->id);
 }
 
-oatpp::Object<ReviewDto> ReviewService::getReviewById(const oatpp::Int32& id) {
-
+oatpp::Object<ReviewDto> ReviewService::getReviewById(const oatpp::Int32& id)
+{
     auto dbResult = m_database->getReviewById(id);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
     OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "Feedback not found");
@@ -28,14 +26,28 @@ oatpp::Object<ReviewDto> ReviewService::getReviewById(const oatpp::Int32& id) {
     OATPP_ASSERT_HTTP(result->size() == 1, Status::CODE_500, "Unknown error");
 
     return result[0];
-
 }
 
-oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviews(const oatpp::UInt32& offset, const oatpp::UInt32& limit) {
+oatpp::Object<ReviewBanDto> ReviewService::getBanReviewById(const oatpp::Int32& id)
+{
+    auto dbResult = m_database_ban->getReviewBanById(id);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+    OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "Feedback not found");
 
+    auto result = dbResult->fetch<oatpp::Vector<oatpp::Object<ReviewBanDto>>>();
+    OATPP_ASSERT_HTTP(result->size() == 1, Status::CODE_500, "Unknown error");
+
+    return result[0];
+}
+
+
+oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviews(
+    const oatpp::UInt32& offset, const oatpp::UInt32& limit)
+{
     oatpp::UInt32 countToFetch = limit;
 
-    if (limit > 10) {
+    if (limit > 10)
+    {
         countToFetch = 10;
     }
 
@@ -51,16 +63,16 @@ oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviews(const
     page->items = items;
 
     return page;
-
 }
 
 
-
-oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByUserId(const oatpp::String& userId, const oatpp::UInt32& offset, const oatpp::UInt32& limit) {
-
+oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByUserId(
+    const oatpp::String& userId, const oatpp::UInt32& offset, const oatpp::UInt32& limit)
+{
     oatpp::UInt32 countToFetch = limit;
 
-    if (limit > 10) {
+    if (limit > 10)
+    {
         countToFetch = 10;
     }
 
@@ -76,14 +88,15 @@ oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByUserI
     page->items = items;
 
     return page;
-
 }
 
-oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByCourseId(const oatpp::String& courseId, const oatpp::UInt32& offset, const oatpp::UInt32& limit) {
-
+oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByCourseId(
+    const oatpp::String& courseId, const oatpp::UInt32& offset, const oatpp::UInt32& limit)
+{
     oatpp::UInt32 countToFetch = limit;
 
-    if (limit > 10) {
+    if (limit > 10)
+    {
         countToFetch = 10;
     }
 
@@ -99,12 +112,11 @@ oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByCours
     page->items = items;
 
     return page;
-
 }
 
 
-oatpp::Object<ReviewDto> ReviewService::likeReview(const oatpp::Int32& id) {
-
+oatpp::Object<ReviewDto> ReviewService::getLikes(const oatpp::Int32& id)
+{
     auto dbResult = m_database->getReviewById(id);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
     OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "Feedback not found");
@@ -113,11 +125,10 @@ oatpp::Object<ReviewDto> ReviewService::likeReview(const oatpp::Int32& id) {
     OATPP_ASSERT_HTTP(result->size() == 1, Status::CODE_500, "Unknown error");
 
     return result[0];
-
 }
 
-oatpp::Object<ReviewDto> ReviewService::deslikeReview(const oatpp::Int32& id) {
-
+oatpp::Object<ReviewDto> ReviewService::getDislikes(const oatpp::Int32& id)
+{
     auto dbResult = m_database->getReviewById(id);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
     OATPP_ASSERT_HTTP(dbResult->hasMoreToFetch(), Status::CODE_404, "Feedback not found");
@@ -126,5 +137,36 @@ oatpp::Object<ReviewDto> ReviewService::deslikeReview(const oatpp::Int32& id) {
     OATPP_ASSERT_HTTP(result->size() == 1, Status::CODE_500, "Unknown error");
 
     return result[0];
+}
 
+oatpp::Object<ReviewBanDto> ReviewService::banReview(const oatpp::Object<CreateReviewBanDto>& dto)
+{
+    m_database->banReview(dto->reviewId);
+    auto dbResult = m_database_ban->createReviewBan(dto);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+    auto id = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+
+    return getBanReviewById((v_int32)id);
+}
+
+
+oatpp::Vector<oatpp::Object<ReviewBanDto>> ReviewService::getBanReviews(const oatpp::Int32& reviewId)
+{
+    auto dbResult = m_database_ban->getReviewBanByRevievId(reviewId);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+
+    auto items = dbResult->fetch<oatpp::Vector<oatpp::Object<ReviewBanDto>>>();
+    return items;
+};
+
+
+oatpp::Object<ReviewDto> ReviewService::unbanReview(const oatpp::Int32& reviewMarkId, const oatpp::Int32& adminId,
+                                                       const oatpp::Int32& reviewId)
+{
+    m_database->unbanReview(reviewId);
+    auto dbResult = m_database_ban->deleteReviewBanById(reviewMarkId);
+    OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
+    auto id = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+
+    return getReviewById(reviewMarkId);
 }

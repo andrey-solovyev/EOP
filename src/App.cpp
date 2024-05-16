@@ -8,6 +8,8 @@
 #include <iostream>
 
 #include "controller/ReviewController.hpp"
+#include "controller/ReviewMarkController.hpp"
+
 
 void run() {
   
@@ -19,6 +21,7 @@ void run() {
   oatpp::web::server::api::Endpoints docEndpoints;
 
   docEndpoints.append(router->addController(ReviewController::createShared())->getEndpoints());
+  docEndpoints.append(router->addController(ReviewMarkController::createShared())->getEndpoints());
 
   router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
  // router->addController(StaticController::createShared());

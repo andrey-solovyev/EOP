@@ -1,0 +1,4 @@
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/RelWithDebInfo/ReviewService.obj
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/RelWithDebInfo/App.obj
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/RelWithDebInfo/ErrorHandler.obj
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/RelWithDebInfo/ReviewMarkService.obj

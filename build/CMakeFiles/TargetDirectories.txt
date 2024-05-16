@@ -1,5 +1,0 @@
-C:/Users/andru/source/repos/feedback-service/build/CMakeFiles/crud-lib.dir
-C:/Users/andru/source/repos/feedback-service/build/CMakeFiles/crud-exe.dir
-C:/Users/andru/source/repos/feedback-service/build/CMakeFiles/RUN_TESTS.dir
-C:/Users/andru/source/repos/feedback-service/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/andru/source/repos/feedback-service/build/CMakeFiles/ZERO_CHECK.dir

@@ -1,0 +1,13 @@
+"C:\Program Files\JetBrains\CLion 2024.1.1\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -S C:\Users\andru\source\repos\feedback-service -B C:\Users\andru\source\repos\feedback-service\cmake-build-debug-visual-studio
+CMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Selecting Windows SDK version 10.0.22621.0 to target Windows 10.0.19045.
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio

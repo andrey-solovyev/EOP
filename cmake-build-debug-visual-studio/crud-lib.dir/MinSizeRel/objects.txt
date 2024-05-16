@@ -1,0 +1,4 @@
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/MinSizeRel/ReviewService.obj
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/MinSizeRel/App.obj
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/MinSizeRel/ErrorHandler.obj
+C:/Users/andru/source/repos/feedback-service/cmake-build-debug-visual-studio/crud-lib.dir/MinSizeRel/ReviewMarkService.obj

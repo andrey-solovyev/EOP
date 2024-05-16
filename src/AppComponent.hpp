@@ -3,6 +3,7 @@
 #define AppComponent_hpp
 
 #include "SwaggerComponent.hpp"
+#include "DatabaseComponent.hpp"
 
 #include "ErrorHandler.hpp"
 
@@ -25,7 +26,9 @@ public:
    *  Swagger component
    */
   SwaggerComponent swaggerComponent;
+  
 
+  DatabaseComponent databaseComponent;
 
   /**
    * Create ObjectMapper component to serialize/deserialize DTOs in Controller's API

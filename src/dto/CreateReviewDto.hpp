@@ -6,8 +6,8 @@
 
 #include OATPP_CODEGEN_BEGIN(DTO)
 
-class CreateReviewDto : public oatpp::DTO {
-
+class CreateReviewDto : public oatpp::DTO
+{
     DTO_INIT(CreateReviewDto, DTO)
 
     DTO_FIELD(String, description, "description");
