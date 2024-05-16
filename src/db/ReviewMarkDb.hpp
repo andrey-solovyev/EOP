@@ -2,7 +2,7 @@
 #define CRUD_REVIEWMARKDB_HPP
 
 #include "dto/CreateReviewMarkDto.hpp"
-#include "oatpp-sqlite/orm.hpp"
+#include "oatpp-postgresql/orm.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
 
