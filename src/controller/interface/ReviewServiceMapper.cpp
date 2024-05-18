@@ -62,14 +62,14 @@ oatpp::Object<ReviewBanCDto> mapToOatpp(const ReviewBanCDto* dto)
 };
 
 
-void ReviewServiceMapper::createReview(CreateReviewInt* dto, Review* resultReview)
+void ReviewServiceMapper::createReview(CreateReviewInt* dto, Review* resultReview) const
 {
     auto reviewOatpp = mapDtoToCreateReview(dto);
     auto resultRerviewOatpp = m_reviewService->createReview(reviewOatpp);
     mapDtoToReview(resultRerviewOatpp, resultReview);
 };
 
-void ReviewServiceMapper::updateReview(Review* dto, Review* resultDto)
+void ReviewServiceMapper::updateReview(Review* dto, Review* resultDto) const
 {
     auto reviewOatpp = mapDtoToReview(dto);
     auto resultRerviewOatpp = m_reviewService->updateReview(reviewOatpp);

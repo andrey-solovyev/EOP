@@ -48,9 +48,9 @@ struct ReviewBanCDto
     char* creationDate;
 };
 
-void createReview(CreateReviewInt* dto, Review* review);
+void createReview(struct CreateReviewInt* dto,struct Review* review);
 
-void updateReview(Review* dto, struct Review*);
+void updateReview(struct Review* dto, struct Review*);
 void getReviewById(int id, struct Review*);
 void getLikes(int id, struct Review*);
 void getDislikes(int id, struct Review*);
@@ -61,7 +61,7 @@ void getReviewByCourseId(char* courseId, int offset, int limit, struct PageCDto*
 
 
 void getBanReviewById(int id, struct ReviewBanCDto*);
-void banReview(CreateReviewBanCDto* dto, struct ReviewBanCDto*);
+void banReview(struct CreateReviewBanCDto* dto, struct ReviewBanCDto*);
 void getBanReviews(int id, struct ReviewBanCDto*);
 void unbanReview(int reviewMarkid, int adminId, int reviewId, struct Review*);
 
