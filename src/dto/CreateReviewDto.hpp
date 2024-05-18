@@ -11,7 +11,7 @@ class CreateReviewDto : public oatpp::DTO
     DTO_INIT(CreateReviewDto, DTO)
 
     DTO_FIELD(String, description, "description");
-    DTO_FIELD(String, grade, "grade");
+    DTO_FIELD(Int32, grade, "grade");
     DTO_FIELD(Int32, userId, "userId");
     DTO_FIELD(Int32, courseId, "courseId");
 };

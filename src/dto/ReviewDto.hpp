@@ -12,7 +12,7 @@ class ReviewDto : public oatpp::DTO {
 
     DTO_FIELD(Int32, id, "id");
     DTO_FIELD(String, description, "description");
-    DTO_FIELD(String, grade, "grade");
+    DTO_FIELD(Int32, grade, "grade");
     DTO_FIELD(Int32, userId, "userId");
     DTO_FIELD(Int32, courseId, "courseId");
     DTO_FIELD(String, creationDate, "creationDate");

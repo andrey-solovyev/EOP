@@ -27,6 +27,10 @@ add_library(crud-lib SHARED
         "src/dto/CreateReviewBanDto.hpp"
         "src/dto/ReviewBanDto.hpp"
         "src/db/ReviewBanDb.hpp"
+        "src/controller/interface/ReviewServiceMapper.hpp"
+        "src/controller/interface/ReviewServiceMapper.cpp"
+        "src/controller/interface/CreateReviewInt.h"
+        "src/controller/interface/CreateReviewInt.c"
 
 )
 
@@ -39,14 +43,14 @@ target_include_directories(crud-lib PUBLIC src)
 
 find_package(oatpp)
 find_package(oatpp-swagger)
-find_package(oatpp-postgresql)
+find_package(oatpp-sqlite)
 
 
 target_link_libraries(crud-lib
         # Oat++
         PUBLIC oatpp::oatpp
         PUBLIC oatpp::oatpp-swagger
-        PUBLIC oatpp::oatpp-postgresql
+        PUBLIC oatpp::oatpp-sqlite
 )
 
 # If CMake can't find SQLite3:
@@ -63,6 +67,11 @@ target_link_libraries(crud-lib
 add_definitions(
         ## define path to swagger-ui static resources folder
         -DOATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
+
+        ## SQLite database file
+        -DDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/db.sqlite"
+        ## SQLite database test file
+        -DTESTDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/test-db.sqlite"
 
         ## Path to database migration scripts
         -DDATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/sql"
