@@ -17,13 +17,17 @@ private:
 public:
     OATPP_COMPONENT(std::shared_ptr<ReviewService>, m_reviewService); // Inject service component
 
-    // oatpp::Object<CreateReviewDto> mapDtoToCreateReview(CreateReviewInt* create_review);
-    // void mapDtoToReview(const oatpp::Object<ReviewDto>& dto, Review* review);
+    // static oatpp::Object<CreateReviewDto> mapDtoToCreateReview(CreateReviewInt* create_review);
+    static oatpp::Object<CreateReviewDto> mapDtoToCreateReview(const CreateReviewInt* create_review);
+    static oatpp::Object<ReviewDto> mapDtoToReview(const Review* review);
+    static void mapDtoToReview(const oatpp::Object<ReviewDto>& dto, Review* review);
+    static oatpp::Object<CreateReviewBanDto> mapToReviewBanOatpp(const CreateReviewBanCDto* dto);
+    static oatpp::Object<ReviewBanDto> mapToOatpp(const ReviewBanCDto* dto);
 
 
-    void createReview(struct CreateReviewInt* dto, struct Review* review) const;
+    void createReview(CreateReviewInt* dto, Review* review);
 
-    void updateReview(struct Review* dto, struct Review* resultDto) const;
+    void updateReview(Review* dto, Review* resultDto);
     void getReviewById(int id, struct Review* resultDto);
     void getLikes(int id, struct Review* resultDto);
     void getDislikes(int id, struct Review* resultDto);

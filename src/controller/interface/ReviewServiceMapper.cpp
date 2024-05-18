@@ -2,7 +2,7 @@
 #include "CreateReviewInt.h"
 
 
-oatpp::Object<CreateReviewDto> mapDtoToCreateReview(const CreateReviewInt* create_review)
+oatpp::Object<CreateReviewDto> ReviewServiceMapper::mapDtoToCreateReview(const CreateReviewInt* create_review)
 {
     oatpp::Object<CreateReviewDto> createReviewDto;
 
@@ -14,7 +14,7 @@ oatpp::Object<CreateReviewDto> mapDtoToCreateReview(const CreateReviewInt* creat
     return createReviewDto;
 }
 
-oatpp::Object<ReviewDto> mapDtoToReview(const Review* review)
+oatpp::Object<ReviewDto> ReviewServiceMapper::mapDtoToReview(const Review* review)
 {
     oatpp::Object<ReviewDto> createReviewDto;
 
@@ -30,7 +30,7 @@ oatpp::Object<ReviewDto> mapDtoToReview(const Review* review)
 }
 
 
-void mapDtoToReview(const oatpp::Object<ReviewDto>& dto, Review* review)
+void ReviewServiceMapper::mapDtoToReview(const oatpp::Object<ReviewDto>& dto, Review* review)
 {
     review->id = dto->id;
     review->description = (char*)dto->description->c_str();
@@ -41,18 +41,18 @@ void mapDtoToReview(const oatpp::Object<ReviewDto>& dto, Review* review)
     review->updateDate = (char*)dto->updateDate->c_str();
 }
 
-oatpp::Object<CreateReviewBanCDto> mapToReviewBanOatpp(const CreateReviewBanCDto* dto)
+oatpp::Object<CreateReviewBanDto> ReviewServiceMapper::mapToReviewBanOatpp(const CreateReviewBanCDto* dto)
 {
-    oatpp::Object<CreateReviewBanCDto> createReviewBanDto;
+    oatpp::Object<CreateReviewBanDto> createReviewBanDto;
     createReviewBanDto->adminId = (dto->adminId);
     createReviewBanDto->reviewId = (dto->reviewId);
     createReviewBanDto->description = (dto->description);
     return createReviewBanDto;
 }
 
-oatpp::Object<ReviewBanCDto> mapToOatpp(const ReviewBanCDto* dto)
+oatpp::Object<ReviewBanDto> ReviewServiceMapper::mapToOatpp(const ReviewBanCDto* dto)
 {
-    oatpp::Object<ReviewBanCDto> reviewBanDto;
+    oatpp::Object<ReviewBanDto> reviewBanDto;
 
     reviewBanDto->id = (dto->id);
     reviewBanDto->adminId = (dto->adminId);
@@ -62,14 +62,14 @@ oatpp::Object<ReviewBanCDto> mapToOatpp(const ReviewBanCDto* dto)
 };
 
 
-void ReviewServiceMapper::createReview(CreateReviewInt* dto, Review* resultReview) const
+void ReviewServiceMapper::createReview(CreateReviewInt* dto, Review* resultReview)
 {
     auto reviewOatpp = mapDtoToCreateReview(dto);
     auto resultRerviewOatpp = m_reviewService->createReview(reviewOatpp);
     mapDtoToReview(resultRerviewOatpp, resultReview);
 };
 
-void ReviewServiceMapper::updateReview(Review* dto, Review* resultDto) const
+void ReviewServiceMapper::updateReview(Review* dto, Review* resultDto)
 {
     auto reviewOatpp = mapDtoToReview(dto);
     auto resultRerviewOatpp = m_reviewService->updateReview(reviewOatpp);
@@ -135,17 +135,17 @@ void ReviewServiceMapper::getBanReviews(const int id, ReviewBanCDto* resultRevie
 {
     const oatpp::Int32& banReviewIds = static_cast<const oatpp::Int32&>(id);
     auto reviewBans = m_reviewService->getBanReviews(banReviewIds);
-    ReviewBanCDto* reviewBansArray = new ReviewBanCDto[reviewBans->max_size()];
-    for (int i = 0; i < reviewBans->max_size(); i++)
-    {
-        oatpp::Object<ReviewBanCDto> reviewBanDto = reviewBans[i];
-        reviewBansArray[i].id = reviewBanDto->id;
-        reviewBansArray[i].adminId = reviewBanDto->adminId;
-        reviewBansArray[i].reviewId = reviewBanDto->reviewId;
-        reviewBansArray[i].description = reviewBanDto->description;
-        reviewBansArray[i].creationDate = reviewBanDto->creationDate;
-    }
-    resultReviewBanDto = reviewBansArray;
+    // ReviewBanCDto* reviewBansArray = new ReviewBanCDto[reviewBans->max_size()];
+    // for (int i = 0; i < reviewBans->max_size(); i++)
+    // {
+    //     oatpp::Object<ReviewBanCDto> reviewBanDto = reviewBans[i];
+    //     reviewBansArray[i].id = reviewBanDto->id;
+    //     reviewBansArray[i].adminId = reviewBanDto->adminId;
+    //     reviewBansArray[i].reviewId = reviewBanDto->reviewId;
+    //     reviewBansArray[i].description = reviewBanDto->description;
+    //     reviewBansArray[i].creationDate = reviewBanDto->creationDate;
+    // }
+    // resultReviewBanDto = reviewBansArray;
 }
 
 void ReviewServiceMapper::unbanReview(const int reviewMarkid, const int adminId, const int reviewId, Review* resultDto)
