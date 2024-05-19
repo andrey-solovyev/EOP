@@ -91,7 +91,7 @@ public:
     }
 
     ENDPOINT("GET", "review/user/{userId}/offset/{offset}/limit/{limit}", getReviewByUserId,
-             PATH(String, userId),
+             PATH(Int32, userId),
              PATH(UInt32, offset),
              PATH(UInt32, limit))
     {
@@ -108,7 +108,7 @@ public:
     }
 
     ENDPOINT("GET", "review/courses/{courseId}/offset/{offset}/limit/{limit}", getReviewByCourseId,
-             PATH(String, courseId),
+             PATH(Int32, courseId),
              PATH(UInt32, offset),
              PATH(UInt32, limit))
     {

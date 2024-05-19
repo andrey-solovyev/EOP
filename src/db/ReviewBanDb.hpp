@@ -22,9 +22,9 @@ public:
     }
 
     QUERY(createReviewBan,
-          "INSERT INTO review.review_ban VALUES "
+          "INSERT INTO review.review_ban   "
           "(admin_id, review_id, description) VALUES "
-          "(:review.adminId, :review.reviewId, :review.description);",
+          "(:review.adminId, :review.reviewId, :review.description) RETURNING <!! id, admin_id as \"adminId\", review_id as \"reviewId\", description, CAST(creation_date AS text) as \"creationDate\" !!> ;",
           PARAM(oatpp::Object<CreateReviewBanDto>, review))
 
     QUERY(deleteReviewBanById,
@@ -32,11 +32,11 @@ public:
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviewBanById,
-              "SELECT * FROM review.review_ban WHERE id=:id;",
+              "SELECT <!! id, admin_id as \"adminId\", review_id as \"reviewId\", description, CAST(creation_date AS text) as \"creationDate\" !!>  FROM review.review_ban WHERE id=:id;",
               PARAM(oatpp::Int32, id))
 
     QUERY(getReviewBanByRevievId,
-          "SELECT * FROM review.review_ban WHERE review_id = :reviewId;",
+          "SELECT <!! id, admin_id as \"adminId\", review_id as \"reviewId\", description, CAST(creation_date AS text) as \"creationDate\" !!>  FROM review.review_ban WHERE review_id = :reviewId;",
           PARAM(oatpp::Int32, reviewId))
 };
 

@@ -67,7 +67,7 @@ oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviews(
 
 
 oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByUserId(
-    const oatpp::String& userId, const oatpp::UInt32& offset, const oatpp::UInt32& limit)
+    const oatpp::Int32& userId, const oatpp::UInt32& offset, const oatpp::UInt32& limit)
 {
     oatpp::UInt32 countToFetch = limit;
 
@@ -91,7 +91,7 @@ oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByUserI
 }
 
 oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> ReviewService::getReviewByCourseId(
-    const oatpp::String& courseId, const oatpp::UInt32& offset, const oatpp::UInt32& limit)
+    const oatpp::Int32& courseId, const oatpp::UInt32& offset, const oatpp::UInt32& limit)
 {
     oatpp::UInt32 countToFetch = limit;
 

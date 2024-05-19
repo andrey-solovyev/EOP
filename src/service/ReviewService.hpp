@@ -34,8 +34,8 @@ public:
 
 
 	oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> getReviews(const oatpp::UInt32& offset, const oatpp::UInt32& limit);
-	oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> getReviewByUserId(const oatpp::String& userId, const oatpp::UInt32& offset, const oatpp::UInt32& limit);
-	oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> getReviewByCourseId(const oatpp::String& courseId, const oatpp::UInt32& offset, const oatpp::UInt32& limit);
+	oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> getReviewByUserId(const oatpp::Int32& userId, const oatpp::UInt32& offset, const oatpp::UInt32& limit);
+	oatpp::Object<PageDto<oatpp::Object<ReviewDto>>> getReviewByCourseId(const oatpp::Int32& courseId, const oatpp::UInt32& offset, const oatpp::UInt32& limit);
 };
 
 #endif

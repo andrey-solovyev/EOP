@@ -88,7 +88,7 @@ public:
         info->addResponse<Object<StatusDto>>(Status::CODE_500, "application/json");
     }
 
-    ENDPOINT("DELETE", "reviewMark/{reviewMarkd}", deleteReviewMark,
+    ENDPOINT("DELETE", "reviewMark/{reviewMarkId}", deleteReviewMark,
              PATH(Int32, reviewMarkId))
     {
         return createDtoResponse(Status::CODE_200, m_reviewService.deleteMarkReview(reviewMarkId));

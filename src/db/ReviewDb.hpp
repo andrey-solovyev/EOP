@@ -26,9 +26,9 @@ public:
     }
 
     QUERY(createReview,
-          "INSERT INTO review.review VALUES "
-          "(description, grade, user_id, course_id, is_updated, creation_date, update_date) VALUES "
-          "(:review.description, :review.grade, :review.userld, :review.courseld, :review.isUpdated, :review.creationDate, :review.updateDate);",
+          "INSERT INTO review.review   "
+          "(description, grade, user_id, course_id ) VALUES "
+          "(:review.description, :review.grade, :review.userId, :review.courseId ) returning <!!  id, description, grade, user_id as \"userId\", course_id as \"courseId\", CAST(creation_date AS text)   as \"creationDate\", CAST(update_date AS text)   as \"updateDate\" !!>;",
           PARAM(oatpp::Object<CreateReviewDto>, review))
 
     QUERY(updateReview,
@@ -42,11 +42,11 @@ public:
           PARAM(oatpp::Object<ReviewDto>, review))
 
     QUERY(getReviewById,
-          "SELECT * FROM review.review WHERE id=:id;",
+          "SELECT <!!  id, description, grade, user_id as \"userId\", course_id as \"courseId\", CAST(creation_date AS text)   as \"creationDate\", CAST(update_date AS text)   as \"updateDate\" !!> FROM review.review WHERE id=:id;",
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviewsByCoursId,
-          "SELECT * FROM review.review WHERE courseId = :courseId;",
+          "SELECT <!!  id, description, grade, user_id as \"userId\", course_id as \"courseId\", CAST(creation_date AS text)   as \"creationDate\", CAST(update_date AS text)   as \"updateDate\" !!> FROM review.review WHERE courseId = :courseId;",
           PARAM(oatpp::UInt32, courseId))
 
     QUERY(deleteReviewById,
@@ -54,22 +54,24 @@ public:
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviews,
-          "SELECT * FROM review.review order by creation_date desc LIMIT :limit OFFSET :offset;",
+          "SELECT <!!  id, description, grade, user_id as \"userId\", course_id as \"courseId\", CAST(creation_date AS text)   as \"creationDate\", CAST(update_date AS text)   as \"updateDate\" !!> FROM review.review order by creation_date desc LIMIT :limit OFFSET :offset;",
           PARAM(oatpp::UInt32, offset),
           PARAM(oatpp::UInt32, limit))
 
 
     QUERY(getReviewByUserId,
-          "SELECT * FROM review.review WHERE user_id=:userId order by creation_date desc LIMIT :limit OFFSET :offset;",
-          PARAM(oatpp::String, userId),
+          "SELECT <!!  id, description, grade, user_id as \"userId\", course_id as \"courseId\", CAST(creation_date AS text)   as \"creationDate\", CAST(update_date AS text)   as \"updateDate\" !!> FROM review.review WHERE user_id=:userId order by creation_date desc LIMIT :limit OFFSET :offset;",
+          PARAM(oatpp::Int32, userId),
           PARAM(oatpp::UInt32, offset),
           PARAM(oatpp::UInt32, limit))
 
     QUERY(getReviewByCourseId,
-          "SELECT * FROM review.review where course_id=:courseId order by creation_date desc LIMIT :limit OFFSET :offset;",
-          PARAM(oatpp::String, courseId),
+          "SELECT <!!  id, description, grade, user_id as \"userId\", course_id as \"courseId\", CAST(creation_date AS text)   as \"creationDate\", CAST(update_date AS text)   as \"updateDate\" !!>  FROM review.review where course_id=:courseId order by creation_date desc LIMIT :limit OFFSET :offset;",
+          PARAM(oatpp::Int32, courseId),
           PARAM(oatpp::UInt32, offset),
           PARAM(oatpp::UInt32, limit))
+
+ 
 
     QUERY(banReview,
           "UPDATE review.review "

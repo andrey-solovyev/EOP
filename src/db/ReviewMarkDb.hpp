@@ -22,21 +22,21 @@ public:
     }
 
     QUERY(createReview,
-          "INSERT INTO review_mark VALUES "
+          "INSERT INTO review.review_mark   "
           "(user_id, review_id, mark) VALUES "
-          "(:review.userId, :review.reviewId, :review.mark);",
+          "(:review.userId, :review.reviewId, :review.mark) returning <!! id, user_id as \"userId\", review_id as \"reviewId\", mark ,  CAST(creation_date AS text)    as \"creationDate\" !!>;",
           PARAM(oatpp::Object<CreateReviewMarkDto>, review))
 
     QUERY(deleteReviewMarkById,
-          "DELETE FROM review_mark WHERE id=:id;",
+          "DELETE FROM review.review_mark WHERE id=:id;",
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviewMarkById,
-              "SELECT * FROM review_mark WHERE id=:id;",
+              "SELECT <!! id, user_id as \"userId\", review_id as \"reviewId\", mark ,  CAST(creation_date AS text)    as \"creationDate\" !!> FROM review.review_mark WHERE id=:id;",
               PARAM(oatpp::Int32, id))
 
     QUERY(getReviewMarkByRevievId,
-          "SELECT * FROM review_mark WHERE review_id = :reviewId;",
+          "SELECT <!! id, user_id as \"userId\", review_id as \"reviewId\", mark ,  CAST(creation_date AS text)    as \"creationDate\" !!> FROM review.review_mark WHERE review_id = :reviewId;",
           PARAM(oatpp::Int32, reviewId))
 };
 
