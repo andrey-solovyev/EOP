@@ -2,7 +2,7 @@
 #include "AppComponent.hpp"
 
 #include "oatpp-swagger/Controller.hpp"
-
+#include "ServiceComponent.hpp"
 #include "oatpp/network/Server.hpp"
 
 #include <iostream>
@@ -11,58 +11,44 @@
 #include "controller/ReviewMarkController.hpp"
 
 
-void run() {
-  
-  AppComponent components; // Create scope Environment components
-  
-  /* Get router component */
-  OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
+#include <iostream>
 
-  oatpp::web::server::api::Endpoints docEndpoints;
+void run(const oatpp::base::CommandLineArguments& args) {
 
-  docEndpoints.append(router->addController(ReviewController::createShared())->getEndpoints());
-  docEndpoints.append(router->addController(ReviewMarkController::createShared())->getEndpoints());
+	AppComponent appComponent(args);
+	ServiceComponent serviceComponent;
+	SwaggerComponent swaggerComponent;
+	DatabaseComponent databaseComponent;
 
-  router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
- // router->addController(StaticController::createShared());
+	/* create ApiControllers and add endpoints to router */
 
-  /* Get connection handler component */
-  OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
+	auto router = serviceComponent.httpRouter.getObject();
+	oatpp::web::server::api::Endpoints docEndpoints;
 
-  /* Get connection provider component */
-  OATPP_COMPONENT(std::shared_ptr<oatpp::network::ServerConnectionProvider>, connectionProvider);
+	docEndpoints.append(router->addController(ReviewController::createShared())->getEndpoints());
+	docEndpoints.append(router->addController(ReviewMarkController::createShared())->getEndpoints());
 
-  /* create server */
-  oatpp::network::Server server(connectionProvider,
-                                connectionHandler);
-  
-  OATPP_LOGD("Server", "Running on port %s...", connectionProvider->getProperty("port").toString()->c_str());
-  
-  server.run();
+	router->addController(oatpp::swagger::Controller::createShared(docEndpoints));
 
-  /* stop db connection pool 
-  OATPP_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::sqlite::Connection>>, dbConnectionProvider);
-  dbConnectionProvider->stop();
-  */
-  
+	/* create server */
+
+	oatpp::network::Server server(serviceComponent.serverConnectionProvider.getObject(),
+		serviceComponent.serverConnectionHandler.getObject());
+
+	OATPP_LOGD("Server", "Running on port %s...", serviceComponent.serverConnectionProvider.getObject()->getProperty("port").toString()->c_str());
+
+	server.run();
+
 }
 
-/**
- *  main
- */
-int main(int argc, const char * argv[]) {
+int main(int argc, const char* argv[]) {
 
-  oatpp::base::Environment::init();
+	oatpp::base::Environment::init();
 
-  run();
-  
-  /* Print how many objects were created during app running, and what have left-probably leaked */
-  /* Disable object counting for release builds using '-D OATPP_DISABLE_ENV_OBJECT_COUNTERS' flag for better performance */
-  std::cout << "\nEnvironment:\n";
-  std::cout << "objectsCount = " << oatpp::base::Environment::getObjectsCount() << "\n";
-  std::cout << "objectsCreated = " << oatpp::base::Environment::getObjectsCreated() << "\n\n";
-  
-  oatpp::base::Environment::destroy();
-  
-  return 0;
+	run(oatpp::base::CommandLineArguments(argc, argv));
+
+	oatpp::base::Environment::destroy();
+
+	return 0;
 }
+

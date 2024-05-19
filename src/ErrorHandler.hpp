@@ -1,6 +1,6 @@
 
-#ifndef CRUD_ERRORHANDLER_HPP
-#define CRUD_ERRORHANDLER_HPP
+#ifndef EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
+#define EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
 
 #include "dto/StatusDto.hpp"
 
@@ -9,19 +9,19 @@
 
 class ErrorHandler : public oatpp::web::server::handler::ErrorHandler {
 private:
-  typedef oatpp::web::protocol::http::outgoing::Response OutgoingResponse;
-  typedef oatpp::web::protocol::http::Status Status;
-  typedef oatpp::web::protocol::http::outgoing::ResponseFactory ResponseFactory;
+	typedef oatpp::web::protocol::http::outgoing::Response OutgoingResponse;
+	typedef oatpp::web::protocol::http::Status Status;
+	typedef oatpp::web::protocol::http::outgoing::ResponseFactory ResponseFactory;
 private:
-  std::shared_ptr<oatpp::data::mapping::ObjectMapper> m_objectMapper;
+	std::shared_ptr<oatpp::data::mapping::ObjectMapper> m_objectMapper;
 public:
 
-  ErrorHandler(const std::shared_ptr<oatpp::data::mapping::ObjectMapper>& objectMapper);
+	ErrorHandler(const std::shared_ptr<oatpp::data::mapping::ObjectMapper>& objectMapper);
 
-  std::shared_ptr<OutgoingResponse>
-  handleError(const Status& status, const oatpp::String& message, const Headers& headers) override;
+	std::shared_ptr<OutgoingResponse>
+		handleError(const Status& status, const oatpp::String& message, const Headers& headers) override;
 
 };
 
 
-#endif //CRUD_ERRORHANDLER_HPP
+#endif //EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
