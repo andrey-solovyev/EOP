@@ -3,7 +3,7 @@
 
 #include "dto/ReviewDto.hpp"
 #include "dto/CreateReviewDto.hpp"
-#include "oatpp-sqlite/orm.hpp"
+#include "oatpp-postgresql/orm.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
 
@@ -26,27 +26,27 @@ public:
     }
 
     QUERY(createReview,
-          "INSERT INTO Review VALUES "
-          "(description, grade, userld, courseld, isUpdated, creationDate, updateDate, countLike, countDislike) VALUES "
-          "(:review.description, :review.grade, :review.userld, :review.courseld, :review.isUpdated, :review.creationDate, :review.updateDate, :review.countLike, :review.countDislike);",
+          "INSERT INTO review.review VALUES "
+          "(description, grade, user_id, course_id, is_updated, creation_date, update_date) VALUES "
+          "(:review.description, :review.grade, :review.userld, :review.courseld, :review.isUpdated, :review.creationDate, :review.updateDate);",
           PARAM(oatpp::Object<CreateReviewDto>, review))
 
     QUERY(updateReview,
-          "UPDATE Review "
+          "UPDATE review.review "
           "SET "
-          " updateDate =:review.updateDate , "
-          " countLike =:review.countLike , "
-          " countDislike =:review.countDislike , "
+          " description =:review.description, "
+          " grade =:review.grade, "
+          " update_date =:review.updateDate, "
           "WHERE "
           " id=:review.id;",
-          PARAM(oatpp::Object<ReviewDto>, user))
+          PARAM(oatpp::Object<ReviewDto>, review))
 
     QUERY(getReviewById,
-          "SELECT * FROM Review WHERE id=:id;",
+          "SELECT * FROM review.review WHERE id=:id;",
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviewsByCoursId,
-          "SELECT * FROM Review WHERE courseId = :courseId;",
+          "SELECT * FROM review.review WHERE courseId = :courseId;",
           PARAM(oatpp::UInt32, courseId))
 
     QUERY(deleteReviewById,
@@ -54,35 +54,35 @@ public:
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviews,
-          "SELECT * FROM Review order by creationDate desc LIMIT :limit OFFSET :offset;",
+          "SELECT * FROM review.review order by creation_date desc LIMIT :limit OFFSET :offset;",
           PARAM(oatpp::UInt32, offset),
           PARAM(oatpp::UInt32, limit))
 
 
     QUERY(getReviewByUserId,
-          "SELECT * FROM Review WHERE userId=:userId order by creationDate desc LIMIT :limit OFFSET :offset;",
+          "SELECT * FROM review.review WHERE user_id=:userId order by creation_date desc LIMIT :limit OFFSET :offset;",
           PARAM(oatpp::String, userId),
           PARAM(oatpp::UInt32, offset),
           PARAM(oatpp::UInt32, limit))
 
     QUERY(getReviewByCourseId,
-          "SELECT * FROM Review where courseId=:courseId order by creationDate desc LIMIT :limit OFFSET :offset;",
+          "SELECT * FROM review.review where course_id=:courseId order by creation_date desc LIMIT :limit OFFSET :offset;",
           PARAM(oatpp::String, courseId),
           PARAM(oatpp::UInt32, offset),
           PARAM(oatpp::UInt32, limit))
 
     QUERY(banReview,
-          "UPDATE Review "
+          "UPDATE review.review "
           "SET "
-          " isBanned =true , "
+          " is_banned =true , "
           "WHERE "
           " id=:reviewId;",
           PARAM(oatpp::Int32, reviewId))
 
     QUERY(unbanReview,
-          "UPDATE Review "
+          "UPDATE review.review "
           "SET "
-          " isBanned =false , "
+          " is_banned =false , "
           "WHERE "
           " id=:reviewId;",
           PARAM(oatpp::Int32, reviewId))

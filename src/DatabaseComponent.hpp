@@ -4,6 +4,7 @@
 #include "db/ReviewBanDb.hpp"
 #include "db/ReviewDb.hpp"
 #include "db/ReviewMarkDb.hpp"
+#include "dto/ConfigDto.hpp"
 
 class DatabaseComponent
 {
@@ -11,28 +12,37 @@ public:
     /**
      * Create database connection provider component
      */
-    OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::sqlite::Connection>>, dbConnectionProvider)(
-        []
-        {
-            /* Create database-specific ConnectionProvider */
-            auto connectionProvider = std::make_shared<oatpp::sqlite::ConnectionProvider>(DATABASE_FILE);
 
-            /* Create database-specific ConnectionPool */
-            return oatpp::sqlite::ConnectionPool::createShared(connectionProvider,
-                                                               10 /* max-connections */,
-                                                               std::chrono::seconds(5) /* connection TTL */);
+    OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::postgresql::Connection>>, dbConnectionProvider)([] {
+
+        /* Create database-specific ConnectionProvider */
+        OATPP_COMPONENT(oatpp::Object<ConfigDto>, config); // Get config component
+
+        /* Create database-specific ConnectionProvider */
+        auto connectionProvider = std::make_shared<oatpp::postgresql::ConnectionProvider>(config->dbConnectionString);
+
+        /* Create database-specific ConnectionPool */
+        return oatpp::postgresql::ConnectionPool::createShared(connectionProvider,
+            10 /* max-connections */,
+            std::chrono::seconds(5) /* connection TTL */);
+
         }());
 
-    /**
-     * Create database client
-     */
     OATPP_CREATE_COMPONENT(std::shared_ptr<ReviewDb>, reviewDb)([]
     {
-        /* Get database ConnectionProvider component */
-        OATPP_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::sqlite::Connection>>, connectionProvider);
+        OATPP_COMPONENT(oatpp::Object<ConfigDto>, config); // Get config component
+
+        /* Create database-specific ConnectionProvider */
+        auto connectionProvider = std::make_shared<oatpp::postgresql::ConnectionProvider>(config->dbConnectionString);
+
+        /* Create database-specific ConnectionPool */
+        auto connectionPool = oatpp::postgresql::ConnectionPool::createShared(connectionProvider,
+                                                                              10 /* max-connections */,
+                                                                              std::chrono::seconds(5)
+                                                                              /* connection TTL */);
 
         /* Create database-specific Executor */
-        auto executor = std::make_shared<oatpp::sqlite::Executor>(connectionProvider);
+        auto executor = std::make_shared<oatpp::postgresql::Executor>(connectionPool);
 
         /* Create MyClient database client */
         return std::make_shared<ReviewDb>(executor);
@@ -40,27 +50,43 @@ public:
 
     OATPP_CREATE_COMPONENT(std::shared_ptr<ReviewBanDb>, reviewBanDb)([]
     {
-        /* Get database ConnectionProvider component */
-        OATPP_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::sqlite::Connection>>, connectionProvider);
+        OATPP_COMPONENT(oatpp::Object<ConfigDto>, config); // Get config component
+
+        /* Create database-specific ConnectionProvider */
+        auto connectionProvider = std::make_shared<oatpp::postgresql::ConnectionProvider>(config->dbConnectionString);
+
+        /* Create database-specific ConnectionPool */
+        auto connectionPool = oatpp::postgresql::ConnectionPool::createShared(connectionProvider,
+                                                                              10 /* max-connections */,
+                                                                              std::chrono::seconds(5)
+                                                                              /* connection TTL */);
 
         /* Create database-specific Executor */
-        auto executor = std::make_shared<oatpp::sqlite::Executor>(connectionProvider);
+        auto executor = std::make_shared<oatpp::postgresql::Executor>(connectionPool);
 
         /* Create MyClient database client */
         return std::make_shared<ReviewBanDb>(executor);
     }());
 
     OATPP_CREATE_COMPONENT(std::shared_ptr<ReviewMarkDb>, reviewMarkDb)([]
-    {
-        /* Get database ConnectionProvider component */
-        OATPP_COMPONENT(std::shared_ptr<oatpp::provider::Provider<oatpp::sqlite::Connection>>, connectionProvider);
+   {
+       OATPP_COMPONENT(oatpp::Object<ConfigDto>, config); // Get config component
 
-        /* Create database-specific Executor */
-        auto executor = std::make_shared<oatpp::sqlite::Executor>(connectionProvider);
+       /* Create database-specific ConnectionProvider */
+       auto connectionProvider = std::make_shared<oatpp::postgresql::ConnectionProvider>(config->dbConnectionString);
 
-        /* Create MyClient database client */
-        return std::make_shared<ReviewMarkDb>(executor);
-    }());
+       /* Create database-specific ConnectionPool */
+       auto connectionPool = oatpp::postgresql::ConnectionPool::createShared(connectionProvider,
+                                                                             10 /* max-connections */,
+                                                                             std::chrono::seconds(5)
+                                                                             /* connection TTL */);
+
+       /* Create database-specific Executor */
+       auto executor = std::make_shared<oatpp::postgresql::Executor>(connectionPool);
+
+       /* Create MyClient database client */
+       return std::make_shared<ReviewMarkDb>(executor);
+   }());
 };
 
 #endif //CRUD_DATABASECOMPONENT_HPP

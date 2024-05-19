@@ -5,9 +5,9 @@ oatpp::Object<ReviewMarkDto> ReviewMarkService::createMarkReview(const oatpp::Ob
 
     auto dbResult = m_database->createReview(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    auto id = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+    auto result = dbResult->fetch<oatpp::Vector<oatpp::Object<ReviewMarkDto>>>();
 
-    return getReviewMarkById((v_int32)id);
+    return result[0];
 
 }
 

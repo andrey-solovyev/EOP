@@ -17,7 +17,6 @@ private:
 public:
     OATPP_COMPONENT(std::shared_ptr<ReviewService>, m_reviewService); // Inject service component
 
-    // static oatpp::Object<CreateReviewDto> mapDtoToCreateReview(CreateReviewInt* create_review);
     static oatpp::Object<CreateReviewDto> mapDtoToCreateReview(const CreateReviewInt* create_review);
     static oatpp::Object<ReviewDto> mapDtoToReview(const Review* review);
     static void mapDtoToReview(const oatpp::Object<ReviewDto>& dto, Review* review);

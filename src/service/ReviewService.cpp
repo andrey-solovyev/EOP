@@ -4,9 +4,9 @@ oatpp::Object<ReviewDto> ReviewService::createReview(const oatpp::Object<CreateR
 {
     auto dbResult = m_database->createReview(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    auto id = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+    auto result = dbResult->fetch<oatpp::Vector<oatpp::Object<ReviewDto>>>();
 
-    return getReviewById(static_cast<v_int32>(id));
+    return result[0];
 }
 
 oatpp::Object<ReviewDto> ReviewService::updateReview(const oatpp::Object<ReviewDto>& dto)
@@ -144,9 +144,9 @@ oatpp::Object<ReviewBanDto> ReviewService::banReview(const oatpp::Object<CreateR
     m_database->banReview(dto->reviewId);
     auto dbResult = m_database_ban->createReviewBan(dto);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    auto id = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
+    auto result = dbResult->fetch<oatpp::Vector<oatpp::Object<ReviewBanDto>>>();
 
-    return getBanReviewById((v_int32)id);
+    return result[0];
 }
 
 
@@ -166,7 +166,6 @@ oatpp::Object<ReviewDto> ReviewService::unbanReview(const oatpp::Int32& reviewMa
     m_database->unbanReview(reviewId);
     auto dbResult = m_database_ban->deleteReviewBanById(reviewMarkId);
     OATPP_ASSERT_HTTP(dbResult->isSuccess(), Status::CODE_500, dbResult->getErrorMessage());
-    auto id = oatpp::sqlite::Utils::getLastInsertRowId(dbResult->getConnection());
 
-    return getReviewById(reviewMarkId);
+    return getReviewById(reviewId);
 }

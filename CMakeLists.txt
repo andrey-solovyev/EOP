@@ -31,6 +31,7 @@ add_library(crud-lib SHARED
         "src/controller/interface/ReviewServiceMapper.cpp"
         "src/controller/interface/CreateReviewInt.h"
         "src/controller/interface/CreateReviewInt.c"
+        "src/dto/ConfigDto.hpp"
 
 )
 
@@ -43,35 +44,23 @@ target_include_directories(crud-lib PUBLIC src)
 
 find_package(oatpp)
 find_package(oatpp-swagger)
-find_package(oatpp-sqlite)
+find_package(oatpp-postgresql)
 
 
 target_link_libraries(crud-lib
         # Oat++
         PUBLIC oatpp::oatpp
         PUBLIC oatpp::oatpp-swagger
-        PUBLIC oatpp::oatpp-sqlite
+        PUBLIC oatpp::oatpp-postgresql
 )
 
-# If CMake can't find SQLite3:
-#
-# 1. Make sure that you've built oatpp-sqlite with -DOATPP_SQLITE_AMALGAMATION=ON flag
-# 2. If you are not willing to use SQLite amalgamation then uncomment the following lines:
-#
-#find_package(SQLite3 REQUIRED)
-#
-#target_link_libraries(crud-lib
-#        PUBLIC SQLite::SQLite3
-#)
+set(PostgreSQL_INCLUDE_DIR "C:\\Program Files\\PostgreSQL\\12\\include")
 
 add_definitions(
         ## define path to swagger-ui static resources folder
         -DOATPP_SWAGGER_RES_PATH="${oatpp-swagger_INCLUDE_DIRS}/../bin/oatpp-swagger/res"
 
-        ## SQLite database file
-        -DDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/db.sqlite"
-        ## SQLite database test file
-        -DTESTDATABASE_FILE="${CMAKE_CURRENT_SOURCE_DIR}/test-db.sqlite"
+        -DCONFIG_PATH="${CMAKE_CURRENT_LIST_DIR}/resources/config.json"
 
         ## Path to database migration scripts
         -DDATABASE_MIGRATIONS="${CMAKE_CURRENT_SOURCE_DIR}/sql"
@@ -84,8 +73,7 @@ endif ()
 
 ## add executables
 
-add_executable(crud-exe src/App.cpp "src/ErrorHandler.cpp"
-        src/dto/ReviewMarkDto.hpp)
+add_executable(crud-exe src/App.cpp)
 target_link_libraries(crud-exe crud-lib)
 
 ##add_executable(crud-test)

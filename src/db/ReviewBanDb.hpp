@@ -2,7 +2,7 @@
 #define CRUD_REVIEWBANDB_HPP
 
 #include "dto/CreateReviewBanDto.hpp"
-#include "oatpp-sqlite/orm.hpp"
+#include "oatpp-postgresql/orm.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
 
@@ -22,21 +22,21 @@ public:
     }
 
     QUERY(createReviewBan,
-          "INSERT INTO ReviewBan VALUES "
-          "(adminId, reviewId, description) VALUES "
+          "INSERT INTO review.review_ban VALUES "
+          "(admin_id, review_id, description) VALUES "
           "(:review.adminId, :review.reviewId, :review.description);",
           PARAM(oatpp::Object<CreateReviewBanDto>, review))
 
     QUERY(deleteReviewBanById,
-          "DELETE FROM ReviewBan WHERE id=:id;",
+          "DELETE FROM review.review_ban WHERE id=:id;",
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviewBanById,
-              "SELECT * FROM ReviewBan WHERE id=:id;",
+              "SELECT * FROM review.review_ban WHERE id=:id;",
               PARAM(oatpp::Int32, id))
 
     QUERY(getReviewBanByRevievId,
-          "SELECT * FROM ReviewBan WHERE reviewId = :reviewId;",
+          "SELECT * FROM review.review_ban WHERE review_id = :reviewId;",
           PARAM(oatpp::Int32, reviewId))
 };
 

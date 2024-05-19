@@ -2,7 +2,7 @@
 #define CRUD_REVIEWMARKDB_HPP
 
 #include "dto/CreateReviewMarkDto.hpp"
-#include "oatpp-sqlite/orm.hpp"
+#include "oatpp-postgresql/orm.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen
 
@@ -22,21 +22,21 @@ public:
     }
 
     QUERY(createReview,
-          "INSERT INTO ReviewMark VALUES "
-          "(userld, reviewId, mark) VALUES "
+          "INSERT INTO review_mark VALUES "
+          "(user_id, review_id, mark) VALUES "
           "(:review.userId, :review.reviewId, :review.mark);",
           PARAM(oatpp::Object<CreateReviewMarkDto>, review))
 
     QUERY(deleteReviewMarkById,
-          "DELETE FROM ReviewMarkDb WHERE id=:id;",
+          "DELETE FROM review_mark WHERE id=:id;",
           PARAM(oatpp::Int32, id))
 
     QUERY(getReviewMarkById,
-              "SELECT * FROM ReviewMark WHERE id=:id;",
+              "SELECT * FROM review_mark WHERE id=:id;",
               PARAM(oatpp::Int32, id))
 
     QUERY(getReviewMarkByRevievId,
-          "SELECT * FROM ReviewMark WHERE reviewId = :reviewId;",
+          "SELECT * FROM review_mark WHERE review_id = :reviewId;",
           PARAM(oatpp::Int32, reviewId))
 };
 
