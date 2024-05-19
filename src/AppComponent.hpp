@@ -4,9 +4,8 @@
 
 #include "SwaggerComponent.hpp"
 #include "DatabaseComponent.hpp"
-
+#include "dto/ConfigDto.hpp"
 #include "ErrorHandler.hpp"
-
 #include "oatpp/web/server/HttpConnectionHandler.hpp"
 #include "oatpp/web/server/HttpRouter.hpp"
 #include "oatpp/network/tcp/server/ConnectionProvider.hpp"
@@ -33,6 +32,35 @@ public:
   /**
    * Create ObjectMapper component to serialize/deserialize DTOs in Controller's API
    */
+OATPP_CREATE_COMPONENT(oatpp::Object<ConfigDto>, config)([this] {
+
+    const char* configPath = CONFIG_PATH;
+    auto objectMapper = oatpp::parser::json::mapping::ObjectMapper::createShared();
+    
+    oatpp::String configText = oatpp::String::loadFromFile(configPath);
+    if (configText) {
+
+      auto profiles = objectMapper->readFromString<oatpp::Fields<oatpp::Object<ConfigDto>>>(configText);
+
+      const char *profileArg = std::getenv("CONFIG_PROFILE"); // first read from env variable
+      if (profileArg == nullptr) {
+        profileArg = m_cmdArgs.getNamedArgumentValue("--profile", "dev"); // if no env varioable get from command line
+      }
+
+      OATPP_LOGD("Server", "Loading configuration profile '%s'", profileArg);
+
+      auto profile = profiles.getValueByKey(profileArg, nullptr);
+      if(!profile) {
+        throw std::runtime_error("No configuration profile found. Server won't run.");
+      }
+      return profile;
+      
+    }
+    
+    OATPP_LOGE("AppComponent", "Can't load configuration file at path '%s'", configPath);
+    throw std::runtime_error("[AppComponent]: Can't load configuration file");
+    
+  }());
   OATPP_CREATE_COMPONENT(std::shared_ptr<oatpp::data::mapping::ObjectMapper>, apiObjectMapper)([] {
     auto objectMapper = oatpp::parser::json::mapping::ObjectMapper::createShared();
     objectMapper->getDeserializer()->getConfig()->allowUnknownFields = false;
