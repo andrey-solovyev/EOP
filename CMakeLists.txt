@@ -12,6 +12,11 @@ add_library(${project_name}-lib
     src/controller/ReviewController.hpp
     src/controller/ReviewMarkController.hpp
 
+    src/controller/common_interface/CreateReviewInt.c
+    src/controller/common_interface/CreateReviewInt.h
+    src/controller/common_interface/ReviewServiceMapper.hpp
+    src/controller/common_interface/ReviewServiceMapper.cpp
+
     src/db/ReviewDb.hpp
     src/db/ReviewBanDb.hpp
     src/db/ReviewMarkDb.hpp

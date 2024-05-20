@@ -104,14 +104,14 @@ void ReviewServiceMapper::getReviews(const int offset, const int limit, PageCDto
     auto resultRerviewOatpp = m_reviewService->getReviews(offsetParse, limitParse);
 }
 
-void ReviewServiceMapper::getReviewByUserId(char* userId, int offset, int limit, PageCDto* pageDto)
+void ReviewServiceMapper::getReviewByUserId(int userId, int offset, int limit, PageCDto* pageDto)
 {
     const oatpp::UInt32& offsetParse = static_cast<const oatpp::UInt32&>(offset);
     const oatpp::UInt32& limitParse = static_cast<const oatpp::UInt32&>(limit);
     auto resultRerviewOatpp = m_reviewService->getReviewByUserId(userId, offsetParse, limitParse);
 }
 
-void ReviewServiceMapper::getReviewByCourseId(char* courseId, const int offset, const int limit,
+void ReviewServiceMapper::getReviewByCourseId(int courseId, const int offset, const int limit,
                                               PageCDto* pageDto)
 {
     const oatpp::UInt32& offsetParse = static_cast<const oatpp::UInt32&>(offset);

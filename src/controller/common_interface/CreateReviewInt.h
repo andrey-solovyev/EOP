@@ -56,8 +56,8 @@ void getLikes(int id, struct Review*);
 void getDislikes(int id, struct Review*);
 
 void getReviews(int offset, int limit, struct PageCDto*);
-void getReviewByUserId(char* userId, int offset, int limit, struct PageCDto*);
-void getReviewByCourseId(char* courseId, int offset, int limit, struct PageCDto*);
+void getReviewByUserId(int userId, int offset, int limit, struct PageCDto*);
+void getReviewByCourseId(int courseId, int offset, int limit, struct PageCDto*);
 
 
 void getBanReviewById(int id, struct ReviewBanCDto*);
