@@ -4,6 +4,8 @@
 #include "ReviewDto.hpp"
 
 #include OATPP_CODEGEN_BEGIN(DTO)
+#include <oatpp/core/Types.hpp>
+#include <oatpp/core/macro/codegen.hpp>
 
 template<class T>
 class PageDto : public oatpp::DTO {

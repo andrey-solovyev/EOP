@@ -8,49 +8,51 @@ project(${project_name})
 set(CMAKE_CXX_STANDARD 11)
 
 add_library(${project_name}-lib
-
-    src/controller/ReviewController.hpp
-    src/controller/ReviewMarkController.hpp
-
-    src/controller/common_interface/CreateReviewInt.c
-    src/controller/common_interface/CreateReviewInt.h
-    src/controller/common_interface/ReviewServiceMapper.hpp
-    src/controller/common_interface/ReviewServiceMapper.cpp
-
-    src/db/ReviewDb.hpp
-    src/db/ReviewBanDb.hpp
-    src/db/ReviewMarkDb.hpp
-
-    src/dto/CreateReviewBanDto.hpp
-    src/dto/CreateReviewDto.hpp
-    src/dto/CreateReviewMarkDto.hpp
-    src/dto/ReviewBanDto.hpp
-    src/dto/ReviewDto.hpp
-    src/dto/ReviewMarkDto.hpp
-
-    src/service/ReviewService.hpp
-    src/service/ReviewService.cpp
-    src/service/ReviewMarkService.hpp
-    src/service/ReviewMarkService.cpp
-
-    src/dto/ConfigDto.hpp
-    src/dto/PageDto.hpp
-    src/dto/StatusDto.hpp
-
-    src/AppComponent.hpp
-    src/DatabaseComponent.hpp
-    src/ErrorHandler.cpp
-    src/ErrorHandler.hpp
-    src/ServiceComponent.hpp
-    src/SwaggerComponent.hpp
+        EOP_reviewService/controller/common_interface/CreateReviewInt.c
+        EOP_reviewService/controller/common_interface/ReviewServiceMapper.cpp
 )
 
-target_include_directories(${project_name}-lib PUBLIC src)
+target_include_directories(
+        EOP_reviewService/controller/ReviewController.hpp
+        EOP_reviewService/controller/ReviewMarkController.hpp
+
+        EOP_reviewService/controller/common_interface/CreateReviewInt.h
+        EOP_reviewService/controller/common_interface/ReviewServiceMapper.hpp
+
+        EOP_reviewService/db/ReviewDb.hpp
+        EOP_reviewService/db/ReviewBanDb.hpp
+        EOP_reviewService/db/ReviewMarkDb.hpp
+
+        EOP_reviewService/dto/CreateReviewBanDto.hpp
+        EOP_reviewService/dto/CreateReviewDto.hpp
+        EOP_reviewService/dto/CreateReviewMarkDto.hpp
+        EOP_reviewService/dto/ReviewBanDto.hpp
+        EOP_reviewService/dto/ReviewDto.hpp
+        EOP_reviewService/dto/ReviewMarkDto.hpp
+
+        EOP_reviewService/service/ReviewService.hpp
+        EOP_reviewService/service/ReviewService.cpp
+        EOP_reviewService/service/ReviewMarkService.hpp
+        EOP_reviewService/service/ReviewMarkService.cpp
+
+        EOP_reviewService/dto/ConfigDto.hpp
+        EOP_reviewService/dto/PageDto.hpp
+        EOP_reviewService/dto/StatusDto.hpp
+
+        EOP_reviewService/AppComponent.hpp
+        EOP_reviewService/DatabaseComponent.hpp
+        EOP_reviewService/ErrorHandler.cpp
+        EOP_reviewService/ErrorHandler.hpp
+        EOP_reviewService/ServiceComponent.hpp
+        EOP_reviewService/SwaggerComponent.hpp
+)
+
+target_include_directories(${project_name}-lib PUBLIC EOP_reviewService)
 
 ## link libs
 
 find_package(oatpp              1.3.0 REQUIRED)
-find_package(oatpp-swagger      )
+find_package(oatpp-swagger      1.3.0 REQUIRED)
 find_package(oatpp-postgresql   1.3.0 REQUIRED)
 
 target_link_libraries(${project_name}-lib
@@ -75,7 +77,7 @@ add_definitions(
 ## add executables
 
 add_executable(${project_name}-exe
-        src/App.cpp
+        EOP_reviewService/main.cpp
 )
 target_link_libraries(${project_name}-exe ${project_name}-lib)
 add_dependencies(${project_name}-exe ${project_name}-lib)
