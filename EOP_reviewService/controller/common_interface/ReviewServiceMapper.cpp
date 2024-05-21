@@ -135,17 +135,7 @@ void ReviewServiceMapper::getBanReviews(const int id, ReviewBanCDto* resultRevie
 {
     const oatpp::Int32& banReviewIds = static_cast<const oatpp::Int32&>(id);
     auto reviewBans = m_reviewService->getBanReviews(banReviewIds);
-    // ReviewBanCDto* reviewBansArray = new ReviewBanCDto[reviewBans->max_size()];
-    // for (int i = 0; i < reviewBans->max_size(); i++)
-    // {
-    //     oatpp::Object<ReviewBanCDto> reviewBanDto = reviewBans[i];
-    //     reviewBansArray[i].id = reviewBanDto->id;
-    //     reviewBansArray[i].adminId = reviewBanDto->adminId;
-    //     reviewBansArray[i].reviewId = reviewBanDto->reviewId;
-    //     reviewBansArray[i].description = reviewBanDto->description;
-    //     reviewBansArray[i].creationDate = reviewBanDto->creationDate;
-    // }
-    // resultReviewBanDto = reviewBansArray;
+    ReviewBanCDto* reviewBansArray = new ReviewBanCDto[reviewBans->max_size()];
 }
 
 void ReviewServiceMapper::unbanReview(const int reviewMarkid, const int adminId, const int reviewId, Review* resultDto)

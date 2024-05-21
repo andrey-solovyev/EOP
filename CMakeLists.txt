@@ -10,9 +10,13 @@ set(CMAKE_CXX_STANDARD 11)
 add_library(${project_name}-lib
         EOP_reviewService/controller/common_interface/CreateReviewInt.c
         EOP_reviewService/controller/common_interface/ReviewServiceMapper.cpp
+        EOP_reviewService/main.c
+        EOP_reviewService/init.cpp
 )
 
+
 target_include_directories(
+        ${project_name}-lib PUBLIC EOP_reviewService
         EOP_reviewService/controller/ReviewController.hpp
         EOP_reviewService/controller/ReviewMarkController.hpp
 
@@ -45,15 +49,15 @@ target_include_directories(
         EOP_reviewService/ErrorHandler.hpp
         EOP_reviewService/ServiceComponent.hpp
         EOP_reviewService/SwaggerComponent.hpp
+        EOP_reviewService/init.hpp
+        EOP_reviewService/init.h
 )
-
-target_include_directories(${project_name}-lib PUBLIC EOP_reviewService)
 
 ## link libs
 
-find_package(oatpp              1.3.0 REQUIRED)
-find_package(oatpp-swagger      1.3.0 REQUIRED)
-find_package(oatpp-postgresql   1.3.0 REQUIRED)
+find_package(oatpp 1.3.0 REQUIRED)
+find_package(oatpp-swagger 1.3.0 REQUIRED)
+find_package(oatpp-postgresql 1.3.0 REQUIRED)
 
 target_link_libraries(${project_name}-lib
         PUBLIC oatpp::oatpp
@@ -77,7 +81,7 @@ add_definitions(
 ## add executables
 
 add_executable(${project_name}-exe
-        EOP_reviewService/main.cpp
+        EOP_reviewService/main.c
 )
 target_link_libraries(${project_name}-exe ${project_name}-lib)
 add_dependencies(${project_name}-exe ${project_name}-lib)
