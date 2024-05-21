@@ -2,15 +2,15 @@
 #ifndef ServiceComponent_hpp
 #define ServiceComponent_hpp
 
-#include "dto/ConfigDto.hpp"
-#include "ErrorHandler.hpp"
+#include <dto/ConfigDto.hpp>
+#include <ErrorHandler.hpp>
 
-#include "oatpp/web/server/HttpConnectionHandler.hpp"
-#include "oatpp/web/server/HttpRouter.hpp"
-#include "oatpp/network/tcp/server/ConnectionProvider.hpp"
+#include <oatpp/web/server/HttpConnectionHandler.hpp>
+#include <oatpp/web/server/HttpRouter.hpp>
+#include <oatpp/network/tcp/server/ConnectionProvider.hpp>
 
-#include "oatpp/parser/json/mapping/ObjectMapper.hpp"
-#include "oatpp/core/macro/component.hpp"
+#include <oatpp/parser/json/mapping/ObjectMapper.hpp>
+#include <oatpp/core/macro/component.hpp>
 
 class ServiceComponent {
 public:

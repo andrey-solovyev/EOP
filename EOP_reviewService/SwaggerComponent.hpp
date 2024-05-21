@@ -2,12 +2,12 @@
 #ifndef SwaggerComponent_hpp
 #define SwaggerComponent_hpp
 
-#include "dto/ConfigDto.hpp"
+#include <dto/ConfigDto.hpp>
 
-#include "oatpp-swagger/Model.hpp"
-#include "oatpp-swagger/Resources.hpp"
-#include "oatpp/core/utils/ConversionUtils.hpp"
-#include "oatpp/core/macro/component.hpp"
+#include <oatpp-swagger/Model.hpp>
+#include <oatpp-swagger/Resources.hpp>
+#include <oatpp/core/utils/ConversionUtils.hpp>
+#include <oatpp/core/macro/component.hpp>
 
 class SwaggerComponent {
 public:
