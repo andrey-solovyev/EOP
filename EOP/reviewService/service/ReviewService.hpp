@@ -1,14 +1,14 @@
 
-#ifndef CRUD_REVIEWSERVICE_HPP
-#define CRUD_REVIEWSERVICE_HPP
+#ifndef EOP_REVIEW_REVIEWSERVICE_HPP
+#define EOP_REVIEW_REVIEWSERVICE_HPP
 
-#include <reviewService/db/ReviewBanDb.hpp>
-#include <reviewService/dto/CreateReviewDto.hpp>
-#include <reviewService/dto/ReviewDto.hpp>
-#include <reviewService/dto/PageDto.hpp>
-#include <reviewService/db/ReviewDb.hpp>
-#include <reviewService/dto/CreateReviewBanDto.hpp>
-#include <reviewService/dto/ReviewBanDto.hpp>
+#include <db/ReviewBanDb.hpp>
+#include <dto/CreateReviewDto.hpp>
+#include <dto/ReviewDto.hpp>
+#include <dto/PageDto.hpp>
+#include <db/ReviewDb.hpp>
+#include <dto/CreateReviewBanDto.hpp>
+#include <dto/ReviewBanDto.hpp>
 
 
 #include <oatpp/web/protocol/http/Http.hpp>

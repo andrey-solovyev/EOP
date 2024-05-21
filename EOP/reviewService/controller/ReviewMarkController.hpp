@@ -1,7 +1,7 @@
-#ifndef ReviewMarkController_hpp
-#define ReviewMarkController_hpp
+#ifndef EOP_REVIEW_REVIEWMARKCONTROLLER_HPP
+#define EOP_REVIEW_REVIEWMARKCONTROLLER_HPP
 
-#include <reviewService/service/ReviewMarkService.hpp>
+#include <service/ReviewMarkService.hpp>
 
 #include <oatpp/web/server/api/ApiController.hpp>
 #include <oatpp/core/macro/codegen.hpp>

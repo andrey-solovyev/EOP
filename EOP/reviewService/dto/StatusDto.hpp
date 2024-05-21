@@ -1,6 +1,6 @@
 
-#ifndef CRUD_STATUSDTO_HPP
-#define CRUD_STATUSDTO_HPP
+#ifndef EOP_REVIEW_STATUSDTO_HPP
+#define EOP_REVIEW_STATUSDTO_HPP
 
 #include <oatpp/core/Types.hpp>
 #include <oatpp/core/macro/codegen.hpp>
@@ -30,4 +30,4 @@ class StatusDto : public oatpp::DTO {
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif //CRUD_STATUSDTO_HPP
+#endif //EOP_REVIEW_STATUSDTO_HPP

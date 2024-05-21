@@ -1,8 +1,8 @@
-#ifndef CRUD_REVIEWDB_HPP
-#define CRUD_REVIEWDB_HPP
+#ifndef EOP_REVIEW_REVIEWDB_HPP
+#define EOP_REVIEW_REVIEWDB_HPP
 
-#include <reviewService/dto/ReviewDto.hpp>
-#include <reviewService/dto/CreateReviewDto.hpp>
+#include <dto/ReviewDto.hpp>
+#include <dto/CreateReviewDto.hpp>
 #include <oatpp-postgresql/orm.hpp>
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen

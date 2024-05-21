@@ -1,5 +1,5 @@
-#ifndef CreateReviewMarkDto_hpp
-#define CreateReviewMarkDto_hpp
+#ifndef EOP_REVIEW_CREATEREVIEWMARKDTO_HPP
+#define EOP_REVIEW_CREATEREVIEWMARKDTO_HPP
 
 #include <oatpp/core/Types.hpp>
 #include <oatpp/core/macro/codegen.hpp>

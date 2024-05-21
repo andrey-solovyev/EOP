@@ -1,5 +1,5 @@
-#ifndef CREATE_REVIEW_С_H
-#define CREATE_REVIEW_С_H
+#ifndef EOP_REVIEW_CREATE_REVIEW_С_H
+#define EOP_REVIEW_CREATE_REVIEW_С_H
 
 #ifdef __cplusplus
 extern "C" {

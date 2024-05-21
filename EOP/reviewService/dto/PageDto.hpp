@@ -1,5 +1,5 @@
-#ifndef CRUD_PAGEDTO_HPP
-#define CRUD_PAGEDTO_HPP
+#ifndef EOP_REVIEW_PAGEDTO_HPP
+#define EOP_REVIEW_PAGEDTO_HPP
 
 #include "ReviewDto.hpp"
 
@@ -28,4 +28,4 @@ class ReviewPageDto : public PageDto<oatpp::Object<ReviewDto>> {
 
 #include OATPP_CODEGEN_END(DTO)
 
-#endif //CRUD_PAGEDTO_HPP
+#endif //EOP_REVIEW_PAGEDTO_HPP

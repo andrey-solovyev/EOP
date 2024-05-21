@@ -1,5 +1,5 @@
-#ifndef ReviewBanDto_hpp
-#define ReviewBanDto_hpp
+#ifndef EOP_REVIEW_REVIEWBANDTO_HPP
+#define EOP_REVIEW_REVIEWBANDTO_HPP
 
 #include <oatpp/core/Types.hpp>
 #include <oatpp/core/macro/codegen.hpp>

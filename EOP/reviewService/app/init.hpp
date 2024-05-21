@@ -1,15 +1,15 @@
-#ifndef INIT_HPP
-#define INIT_HPP
-#include <reviewService/app/AppComponent.hpp>
-#include <reviewService/app/DatabaseComponent.hpp>
-#include <reviewService/app/ServiceComponent.hpp>
-#include <reviewService/app/SwaggerComponent.hpp>
+#ifndef EOP_REVIEW_INIT_HPP
+#define EOP_REVIEW_INIT_HPP
+#include <app/AppComponent.hpp>
+#include <app/DatabaseComponent.hpp>
+#include <app/ServiceComponent.hpp>
+#include <app/SwaggerComponent.hpp>
 
 #include <oatpp-swagger/Controller.hpp>
 
 #include <oatpp/network/Server.hpp>
-#include <reviewService/controller/ReviewController.hpp>
-#include <reviewService/controller/ReviewMarkController.hpp>
+#include <controller/ReviewController.hpp>
+#include <controller/ReviewMarkController.hpp>
 
 #include <iostream>
 

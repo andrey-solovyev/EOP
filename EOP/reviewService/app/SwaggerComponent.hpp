@@ -1,8 +1,8 @@
 
-#ifndef SwaggerComponent_hpp
-#define SwaggerComponent_hpp
+#ifndef EOP_REVIEW_SWAGGERCOMPONENT_HPP
+#define EOP_REVIEW_SWAGGERCOMPONENT_HPP
 
-#include <reviewService/dto/ConfigDto.hpp>
+#include <dto/ConfigDto.hpp>
 
 #include <oatpp-swagger/Model.hpp>
 #include <oatpp-swagger/Resources.hpp>
@@ -40,4 +40,4 @@ public:
 
 };
 
-#endif /* SwaggerComponent_hpp */
+#endif /* EOP_REVIEW_SWAGGERCOMPONENT_HPP */

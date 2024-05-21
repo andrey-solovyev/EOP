@@ -1,5 +1,5 @@
 
-#include <reviewService/app/ErrorHandler.hpp>
+#include <app/ErrorHandler.hpp>
 
 ErrorHandler::ErrorHandler(const std::shared_ptr<oatpp::data::mapping::ObjectMapper>& objectMapper)
 	: m_objectMapper(objectMapper)

@@ -1,10 +1,10 @@
-#ifndef CRUD_DATABASECOMPONENT_HPP
-#define CRUD_DATABASECOMPONENT_HPP
+#ifndef EOP_REVIEW_DATABASECOMPONENT_HPP
+#define EOP_REVIEW_DATABASECOMPONENT_HPP
 
-#include <reviewService/db/ReviewBanDb.hpp>
-#include <reviewService/db/ReviewDb.hpp>
-#include <reviewService/db/ReviewMarkDb.hpp>
-#include <reviewService/dto/ConfigDto.hpp>
+#include <db/ReviewBanDb.hpp>
+#include <db/ReviewDb.hpp>
+#include <db/ReviewMarkDb.hpp>
+#include <dto/ConfigDto.hpp>
 
 class DatabaseComponent {
 public:
@@ -74,5 +74,5 @@ public:
 		}());
 };
 
-#endif //EXAMPLE_POSTGRESQL_DATABASECOMPONENT_HPP
+#endif //EOP_REVIEW_DATABASECOMPONENT_HPP
 

@@ -1,5 +1,5 @@
-#include <reviewService/controller/common_interface/ReviewServiceMapper.hpp>
-#include <reviewService/EOP_ReviewService.h>
+#include <controller/common_interface/ReviewServiceMapper.hpp>
+#include <EOP_ReviewService.h>
 
 
 oatpp::Object<CreateReviewDto> ReviewServiceMapper::mapDtoToCreateReview(const CreateReviewInt* create_review)

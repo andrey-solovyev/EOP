@@ -1,4 +1,3 @@
- 
 cmake_minimum_required(VERSION 3.1)
 
 set(project_name eop_review)
@@ -8,49 +7,49 @@ project(${project_name})
 set(CMAKE_CXX_STANDARD 11)
 
 add_library(${project_name}-lib
-        EOP_reviewService/controller/common_interface/CreateReviewInt.c
-        EOP_reviewService/controller/common_interface/ReviewServiceMapper.cpp
-        EOP_reviewService/main.c
-        EOP_reviewService/init.cpp
+        EOP/reviewService/controller/common_interface/ReviewServiceMapper.cpp
+        EOP/reviewService/app/ErrorHandler.cpp
+        EOP/reviewService/app/init.cpp
+        EOP/reviewService/service/ReviewService.cpp
+        EOP/reviewService/service/ReviewMarkService.cpp
+        EOP/reviewService/main.c
 )
 
 
 target_include_directories(
-        ${project_name}-lib PUBLIC EOP_reviewService
-        EOP_reviewService/controller/ReviewController.hpp
-        EOP_reviewService/controller/ReviewMarkController.hpp
+        ${project_name}-lib PUBLIC EOP/reviewService
+        EOP/reviewService/controller/ReviewController.hpp
+        EOP/reviewService/controller/ReviewMarkController.hpp
 
-        EOP_reviewService/controller/common_interface/CreateReviewInt.h
-        EOP_reviewService/controller/common_interface/ReviewServiceMapper.hpp
+        EOP/reviewService/controller/common_interface/ReviewServiceMapper.hpp
 
-        EOP_reviewService/db/ReviewDb.hpp
-        EOP_reviewService/db/ReviewBanDb.hpp
-        EOP_reviewService/db/ReviewMarkDb.hpp
+        EOP/reviewService/db/ReviewDb.hpp
+        EOP/reviewService/db/ReviewBanDb.hpp
+        EOP/reviewService/db/ReviewMarkDb.hpp
 
-        EOP_reviewService/dto/CreateReviewBanDto.hpp
-        EOP_reviewService/dto/CreateReviewDto.hpp
-        EOP_reviewService/dto/CreateReviewMarkDto.hpp
-        EOP_reviewService/dto/ReviewBanDto.hpp
-        EOP_reviewService/dto/ReviewDto.hpp
-        EOP_reviewService/dto/ReviewMarkDto.hpp
+        EOP/reviewService/dto/CreateReviewBanDto.hpp
+        EOP/reviewService/dto/CreateReviewDto.hpp
+        EOP/reviewService/dto/CreateReviewMarkDto.hpp
+        EOP/reviewService/dto/ReviewBanDto.hpp
+        EOP/reviewService/dto/ReviewDto.hpp
+        EOP/reviewService/dto/ReviewMarkDto.hpp
 
-        EOP_reviewService/service/ReviewService.hpp
-        EOP_reviewService/service/ReviewService.cpp
-        EOP_reviewService/service/ReviewMarkService.hpp
-        EOP_reviewService/service/ReviewMarkService.cpp
+        EOP/reviewService/service/ReviewService.hpp
+        EOP/reviewService/service/ReviewMarkService.hpp
 
-        EOP_reviewService/dto/ConfigDto.hpp
-        EOP_reviewService/dto/PageDto.hpp
-        EOP_reviewService/dto/StatusDto.hpp
 
-        EOP_reviewService/AppComponent.hpp
-        EOP_reviewService/DatabaseComponent.hpp
-        EOP_reviewService/ErrorHandler.cpp
-        EOP_reviewService/ErrorHandler.hpp
-        EOP_reviewService/ServiceComponent.hpp
-        EOP_reviewService/SwaggerComponent.hpp
-        EOP_reviewService/init.hpp
-        EOP_reviewService/init.h
+        EOP/reviewService/dto/ConfigDto.hpp
+        EOP/reviewService/dto/PageDto.hpp
+        EOP/reviewService/dto/StatusDto.hpp
+
+        EOP/reviewService/app/AppComponent.hpp
+        EOP/reviewService/app/DatabaseComponent.hpp
+
+        EOP/reviewService/ErrorHandler.hpp
+        EOP/reviewService/ServiceComponent.hpp
+        EOP/reviewService/SwaggerComponent.hpp
+        EOP/reviewService/app/init.hpp
+        EOP/reviewService/app/init.h
 )
 
 ## link libs
@@ -81,9 +80,7 @@ add_definitions(
 ## add executables
 
 add_executable(${project_name}-exe
-        EOP_reviewService/main.c
+        EOP/reviewService/main.c
 )
 target_link_libraries(${project_name}-exe ${project_name}-lib)
 add_dependencies(${project_name}-exe ${project_name}-lib)
-
- 

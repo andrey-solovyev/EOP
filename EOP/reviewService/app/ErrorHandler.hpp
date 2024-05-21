@@ -1,8 +1,8 @@
 
-#ifndef EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
-#define EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
+#ifndef EOP_REVIEW_ERRORHANDLER_HPP
+#define EOP_REVIEW_ERRORHANDLER_HPP
 
-#include <reviewService/dto/StatusDto.hpp>
+#include <dto/StatusDto.hpp>
 
 #include <oatpp/web/server/handler/ErrorHandler.hpp>
 #include <oatpp/web/protocol/http/outgoing/ResponseFactory.hpp>
@@ -24,4 +24,4 @@ public:
 };
 
 
-#endif //EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
+#endif //EOP_REVIEW_ERRORHANDLER_HPP

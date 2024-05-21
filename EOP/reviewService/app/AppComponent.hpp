@@ -1,9 +1,9 @@
 
-#ifndef AppComponent_hpp
-#define AppComponent_hpp
+#ifndef EOP_REVIEW_APPCOMPONENT_HPP
+#define EOP_REVIEW_APPCOMPONENT_HPP
 
-#include <reviewService/app/SwaggerComponent.hpp>
-#include <reviewService/app/DatabaseComponent.hpp>
+#include <app/SwaggerComponent.hpp>
+#include <app/DatabaseComponent.hpp>
 
 #include <oatpp/web/server/HttpConnectionHandler.hpp>
 #include <oatpp/web/server/HttpRouter.hpp>
@@ -63,4 +63,4 @@ public:
 
 };
 
-#endif /* AppComponent_hpp */
+#endif /* EOP_REVIEW_APPCOMPONENT_HPP */

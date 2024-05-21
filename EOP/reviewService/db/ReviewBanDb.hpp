@@ -1,7 +1,7 @@
-#ifndef CRUD_REVIEWBANDB_HPP
-#define CRUD_REVIEWBANDB_HPP
+#ifndef EOP_REVIEW_REVIEWBANDB_HPP
+#define EOP_REVIEW_REVIEWBANDB_HPP
 
-#include <reviewService/dto/CreateReviewBanDto.hpp>
+#include <dto/CreateReviewBanDto.hpp>
 #include <oatpp-postgresql/orm.hpp>
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen

@@ -1,6 +1,6 @@
 
-#ifndef ConfigDto_hpp
-#define ConfigDto_hpp
+#ifndef EOP_REVIEW_CONFIGDTO_HPP
+#define EOP_REVIEW_CONFIGDTO_HPP
 
 #include <oatpp/core/Types.hpp>
 #include <oatpp/core/macro/codegen.hpp>

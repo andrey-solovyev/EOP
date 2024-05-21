@@ -1,5 +1,5 @@
-#include <reviewService/app/init.h>
-#include <reviewService/app/init.hpp>
+#include <app/init.h>
+#include <app/init.hpp>
 
 void run(int argc, const char* argv[]) {
     oatpp::base::Environment::init();

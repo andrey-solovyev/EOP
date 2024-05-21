@@ -1,9 +1,9 @@
 
-#ifndef ServiceComponent_hpp
-#define ServiceComponent_hpp
+#ifndef EOP_REVIEW_SERVICECOMPONENT_HPP
+#define EOP_REVIEW_SERVICECOMPONENT_HPP
 
-#include <reviewService/dto/ConfigDto.hpp>
-#include <reviewService/app/ErrorHandler.hpp>
+#include <dto/ConfigDto.hpp>
+#include <app/ErrorHandler.hpp>
 
 #include <oatpp/web/server/HttpConnectionHandler.hpp>
 #include <oatpp/web/server/HttpRouter.hpp>
@@ -54,4 +54,4 @@ public:
 
 };
 
-#endif /* ServiceComponent_hpp */
+#endif /* EOP_REVIEW_SERVICECOMPONENT_HPP */

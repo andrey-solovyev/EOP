@@ -1,5 +1,5 @@
-#ifndef CreateReviewDto_hpp
-#define CreateReviewDto_hpp
+#ifndef EOP_REVIEW_CREATEREVIEWDTO_HPP
+#define EOP_REVIEW_CREATEREVIEWDTO_HPP
 
 #include <oatpp/core/Types.hpp>
 #include <oatpp/core/macro/codegen.hpp>

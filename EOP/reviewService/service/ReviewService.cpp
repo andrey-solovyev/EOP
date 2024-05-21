@@ -1,4 +1,4 @@
-#include <reviewService/service//ReviewService.hpp>
+#include <service/ReviewService.hpp>
 
 oatpp::Object<ReviewDto> ReviewService::createReview(const oatpp::Object<CreateReviewDto>& dto)
 {
