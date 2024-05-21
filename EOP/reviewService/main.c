@@ -1,4 +1,4 @@
-#include <init.h>
+#include <reviewService/app/init.h>
 
 
 int main(int argc, const char * argv[]) {

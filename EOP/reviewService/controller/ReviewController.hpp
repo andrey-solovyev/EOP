@@ -1,7 +1,7 @@
 #ifndef ReviewController_hpp
 #define ReviewController_hpp
 
-#include <service/ReviewService.hpp>
+#include <reviewService/service/ReviewService.hpp>
 
 #include <oatpp/web/server/api/ApiController.hpp>
 #include <oatpp/core/macro/codegen.hpp>

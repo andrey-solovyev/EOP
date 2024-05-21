@@ -2,8 +2,8 @@
 #ifndef ServiceComponent_hpp
 #define ServiceComponent_hpp
 
-#include <dto/ConfigDto.hpp>
-#include <ErrorHandler.hpp>
+#include <reviewService/dto/ConfigDto.hpp>
+#include <reviewService/app/ErrorHandler.hpp>
 
 #include <oatpp/web/server/HttpConnectionHandler.hpp>
 #include <oatpp/web/server/HttpRouter.hpp>

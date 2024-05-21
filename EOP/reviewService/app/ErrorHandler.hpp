@@ -2,7 +2,7 @@
 #ifndef EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
 #define EXAMPLE_POSTGRESQL_ERRORHANDLER_HPP
 
-#include <dto/StatusDto.hpp>
+#include <reviewService/dto/StatusDto.hpp>
 
 #include <oatpp/web/server/handler/ErrorHandler.hpp>
 #include <oatpp/web/protocol/http/outgoing/ResponseFactory.hpp>

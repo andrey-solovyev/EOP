@@ -1,10 +1,10 @@
 #ifndef CRUD_DATABASECOMPONENT_HPP
 #define CRUD_DATABASECOMPONENT_HPP
 
-#include <db/ReviewBanDb.hpp>
-#include <db/ReviewDb.hpp>
-#include <db/ReviewMarkDb.hpp>
-#include <dto/ConfigDto.hpp>
+#include <reviewService/db/ReviewBanDb.hpp>
+#include <reviewService/db/ReviewDb.hpp>
+#include <reviewService/db/ReviewMarkDb.hpp>
+#include <reviewService/dto/ConfigDto.hpp>
 
 class DatabaseComponent {
 public:

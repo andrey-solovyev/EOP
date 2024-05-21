@@ -3,10 +3,14 @@
 
 #include <iostream>
 
-#include <CreateReviewInt.h>
-#include <db/ReviewBanDb.hpp>
-#include <db/ReviewDb.hpp>
-#include <service/ReviewService.hpp>
+#include <reviewService/EOP_ReviewService.h>
+#include <reviewService/db/ReviewBanDb.hpp>
+#include <reviewService/db/ReviewDb.hpp>
+#include <reviewService/service/ReviewService.hpp>
+#include <reviewService/dto/CreateReviewDto.hpp>
+#include <reviewService/dto/ReviewDto.hpp>
+#include <reviewService/dto/CreateReviewBanDto.hpp>
+#include <reviewService/dto/ReviewBanDto.hpp>
 
 #include <oatpp/web/protocol/http/Http.hpp>
 #include <oatpp/core/macro/component.hpp>

@@ -2,8 +2,8 @@
 #ifndef AppComponent_hpp
 #define AppComponent_hpp
 
-#include <SwaggerComponent.hpp>
-#include <DatabaseComponent.hpp>
+#include <reviewService/app/SwaggerComponent.hpp>
+#include <reviewService/app/DatabaseComponent.hpp>
 
 #include <oatpp/web/server/HttpConnectionHandler.hpp>
 #include <oatpp/web/server/HttpRouter.hpp>

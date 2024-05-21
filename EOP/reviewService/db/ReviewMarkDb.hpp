@@ -1,7 +1,7 @@
 #ifndef CRUD_REVIEWMARKDB_HPP
 #define CRUD_REVIEWMARKDB_HPP
 
-#include <dto/CreateReviewMarkDto.hpp>
+#include <reviewService/dto/CreateReviewMarkDto.hpp>
 #include <oatpp-postgresql/orm.hpp>
 
 #include OATPP_CODEGEN_BEGIN(DbClient) //<- Begin Codegen

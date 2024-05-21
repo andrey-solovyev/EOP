@@ -1,11 +1,12 @@
 #ifndef CRUD_REVIEWMARKSERVICE_HPP
 #define CRUD_REVIEWMARKSERVICE_HPP
 
-#include <dto/CreateReviewMarkDto.hpp>
+#include <reviewService/dto/CreateReviewDto.hpp>
+#include <reviewService/dto/ReviewMarkDto.hpp>
+#include <reviewService/dto/CreateReviewMarkDto.hpp>
+#include <reviewService/dto/StatusDto.hpp>
+#include <reviewService/db/ReviewMarkDb.hpp>
 
-#include <db/ReviewMarkDb.hpp>
-#include <dto/ReviewMarkDto.hpp>
-#include <dto/StatusDto.hpp>
 #include <oatpp/web/protocol/http/Http.hpp>
 #include <oatpp/core/macro/component.hpp>
 
